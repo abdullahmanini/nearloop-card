@@ -1,0 +1,247 @@
+/* Abdullah Al Mneni · Nearloop digital business card (card.nearloop.ca) */
+:root {
+  --ink: #0b1220;
+  --blue: #1b66b8;
+  --navy: #0f2a4a;
+  --muted: #45516b;
+  --label: #5b6680;
+  --page: #f4f7fb;
+  --panel: #f3f7fc;
+  --line: #e3ecf6;
+  --curve: #deeaf6;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--page);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+svg { display: block; }
+
+.page {
+  margin: 0 auto;
+  max-width: 440px;
+  padding: 28px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Card face: text column and curve panel side by side, so they never overlap. */
+.card {
+  container-type: inline-size;
+  position: relative;
+  display: flex;
+  aspect-ratio: 5 / 3;
+  min-height: 212px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(11, 18, 32, 0.06), 0 14px 34px rgba(21, 62, 110, 0.13);
+}
+.card-text {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 24px 20px;
+}
+@media (min-width: 360px) { .card-text { padding-left: 24px; } }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--blue); }
+.brand-mark { height: 24px; width: auto; fill: currentColor; }
+.brand span { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+.card h1 {
+  margin: clamp(1rem, 6vw, 1.875rem) 0 0;
+  font-size: clamp(1.1rem, 5.6vw, 1.45rem);
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.title {
+  margin: 6px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+.tagline { margin: 14px 0 0; font-size: clamp(12px, 3.4vw, 13px); line-height: 1.375; color: var(--muted); }
+.accent { margin-top: 14px; height: 3px; width: 28px; border-radius: 99px; background: var(--blue); }
+.card-panel {
+  position: relative;
+  margin-left: 20px;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  border-left: 1px solid var(--line);
+  background: var(--panel);
+}
+.curve { position: absolute; top: -2%; left: 14px; width: 57cqw; max-width: none; fill: var(--curve); }
+
+/* Buttons */
+.actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 360px) { .actions { grid-template-columns: 1fr 1fr; } }
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 54px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 14px;
+  font-size: 15.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.btn svg { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.btn-primary { background: var(--blue); color: #fff; box-shadow: 0 6px 16px rgba(27, 102, 184, 0.28); }
+.btn-primary:hover { background: #165799; }
+.btn-primary:active { background: #134e8e; }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-navy:hover { background: #0b2140; }
+.btn-navy:active { background: #081a30; }
+
+/* Contact rows */
+.contacts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+.contacts li + li { border-top: 1px solid #eef2f7; }
+.contacts a { display: flex; align-items: center; gap: 14px; min-height: 64px; padding: 8px 16px; }
+.contacts a:hover { background: #f7fafd; }
+.contacts a:active { background: #eef3f9; }
+.contacts a:focus-visible { outline: none; background: var(--panel); }
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #eaf1fa;
+  color: var(--blue);
+}
+.icon svg, .trail { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.text { display: flex; min-width: 0; flex: 1; flex-direction: column; }
+.label { font-size: 12.5px; font-weight: 500; color: var(--label); }
+.value { font-size: 14.5px; font-weight: 600; overflow-wrap: anywhere; }
+@media (min-width: 360px) { .value { font-size: 16px; } }
+.trail { flex-shrink: 0; color: #8792a8; }
+
+.footer { display: flex; align-items: center; justify-content: center; gap: 8px; padding-top: 16px; color: #6b7590; }
+.footer svg { height: 14px; width: auto; fill: var(--blue); }
+.footer span { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; }
+
+/* Share view: the navy reverse of the card, one QR code at a time. */
+.share {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow-y: auto;
+  background: #0d2a4e linear-gradient(150deg, #153e6e 0%, #081a30 100%);
+  color: #fff;
+}
+.share::backdrop { background: #081a30; }
+.share-motif { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.share-motif svg { position: absolute; top: 62%; left: -38%; width: 108%; max-width: 480px; fill: #173e6c; }
+.share-inner {
+  position: relative;
+  margin: 0 auto;
+  max-width: 440px;
+  min-height: 100%;
+  padding: 20px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.share-top { align-self: stretch; }
+.back {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  margin-left: -4px;
+  padding: 0 12px 0 4px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.back svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.back:focus-visible, .toggle button:focus-visible, .btn-white:focus-visible, .btn-outline:focus-visible { outline: 2px solid rgba(255, 255, 255, 0.7); outline-offset: 2px; }
+.share-brand { margin-top: 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.share-brand svg { height: 35px; width: auto; fill: #fff; }
+.share-brand .word { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+.share-brand .kicker { font-size: 10.5px; font-weight: 600; letter-spacing: 0.24em; color: #b4c3d8; }
+.toggle {
+  margin-top: 24px;
+  width: 100%;
+  max-width: 272px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.toggle button {
+  min-height: 40px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #e6edf6;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: #fff; color: var(--navy); }
+.share h2 {
+  margin: 20px 0 0;
+  font-size: clamp(14px, 4.4vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.qr-frame { position: relative; margin-top: 16px; padding: 14px; }
+.brackets { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: #9fb9d9; stroke-width: 2.5; stroke-linecap: round; }
+.qr-tile { border-radius: 20px; background: #fff; padding: 18px; }
+.qr { width: 204px; height: 204px; fill: var(--ink); }
+.qr[hidden] { display: none; }
+.support { margin: 14px 0 0; font-size: 15px; font-weight: 500; color: #e6edf6; text-align: center; }
+.url { margin-top: 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: #b4c3d8; }
+.share-actions { margin-top: auto; padding-top: 32px; width: 100%; display: grid; grid-template-columns: 1fr; gap: 10px; }
+.share-actions.two { grid-template-columns: 1fr 1fr; }
+.btn-white { background: #fff; color: var(--navy); }
+.btn-white:hover { background: #eaf1fa; }
+.btn-outline { border: 1.5px solid rgba(255, 255, 255, 0.45); background: transparent; color: #fff; }
+.btn-outline:hover { background: rgba(255, 255, 255, 0.1); }
+.share-actions:not(.two) .btn-outline { border: 0; background: #fff; color: var(--navy); }
+.status { margin: 12px 0 0; min-height: 20px; font-size: 14px; color: #dce8f6; text-align: center; }
